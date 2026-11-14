@@ -1,7 +1,7 @@
 ---
 name: dsh-plugin-builder
 description: Build, package, install, upgrade, verify and publish DeepSeek Harness (DSH) plugins. Use whenever the task touches a DSH bundle (package.json with dsh.bundle / dsh.client), a cordis.patch.yml, Host plugin code (ctx.tools / ctx.skills / systemPrompt / webServer / pluginManager), the Client half (slots, detail-page sections, locale, primitives), an MCP row through @deepseek-ai/dsh-mcp-client, or shipping a plugin to npm/GitHub/the plugin market — including diagnosing activation failures such as "declares no dsh.bundle", "saved but overridden by a higher-priority configuration", rows that show a bare module name, or a plugin that installs but does nothing.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # DSH plugin builder
@@ -28,7 +28,7 @@ This skill is the practical companion to the official `dsh-doc` skill: load `dsh
 3. **Implement.** Host: `references/host-and-client.md`. Client slot/detail section: same file. Integration (MCP row, skills, self-check/repair, HTTP route): `references/integration-and-repair.md`.
 4. **Install and verify.** `plugin_manager` `install_bundle` (absolute dir or npm/tarball spec). Then follow `references/publish-and-verify.md` § Verify: inspect slots/tools/config, call the capability, and compare UI-visible state.
 5. **Debug.** When activation looks wrong, use `references/pitfalls.md` symptom table first; it maps the exact messages users report to causes and fixes.
-6. **Publish.** Bump version + CHANGELOG, tag, release workflow, npm publish (2FA specifics in `references/publish-and-verify.md`), market PR.
+6. **Publish.** Bump version + CHANGELOG, tag, release workflow, npm publish (2FA specifics in `references/publish-and-verify.md`), then the catalog PR (`awesome-dsh-plugin`, one `data/plugins/<owner>__<repo>.yml`, repo ≥ 1 day old — the `dsh-market` repo is the app and accepts no entries).
 
 ## Reference map
 
@@ -37,7 +37,7 @@ This skill is the practical companion to the official `dsh-doc` skill: load `dsh
 | `references/bundle-contract.md` | package.json fields, patch semantics, row ids, files/exports, install/upgrade lifecycle, cross-platform packaging |
 | `references/host-and-client.md` | Host `apply`/`inject`/`Config`, tool contracts (`output.schema/render`), skills, prompt sections, web routes, pluginManager calls; Client ModuleLoader, slots, detail-page sections, locale, primitives, artwork |
 | `references/integration-and-repair.md` | MCP rows, serverName/row-id namespacing, shadow detection, guarded auto-align, self-check + repair pattern, same-origin route security, Toast error surfaces |
-| `references/publish-and-verify.md` | npm staged publishing, 2FA web-auth via pseudo-TTY, minimumReleaseAge, GitHub Actions CI/release, market catalog PR, verification playbook incl. remote diagnosis |
+| `references/publish-and-verify.md` | npm staged publishing, 2FA web-auth via pseudo-TTY, minimumReleaseAge, GitHub Actions CI/release, the awesome-dsh-plugin catalog PR (requirements, YAML, fork/PR recipe, age gate), verification playbook incl. remote diagnosis |
 | `references/pitfalls.md` | Symptom → cause → fix table: no dsh.bundle, overridden, bare module name, already-installed, store mismatch, version shadow, CRLF hashes, route/auth, HMR restart |
 
 ## Done checklist
@@ -48,4 +48,5 @@ This skill is the practical companion to the official `dsh-doc` skill: load `dsh
 - [ ] Plugin row shows the intended localized title, not a bare module name
 - [ ] Disabling rows leaves a documented degraded mode; failures surface through official error channels
 - [ ] Version bumped, CHANGELOG updated, tag pushed, release + CI green
+- [ ] Market entry: `dsh.bundle` in the repo, topic `dsh-plugin`, repo ≥ 1 day old, one accurate `data/plugins/<owner>__<repo>.yml`, PR only against `awesome-dsh-plugin`
 - [ ] `dsh.engines.dsh` matches the actually supported DSH range; Windows path/CRLF risks reviewed
