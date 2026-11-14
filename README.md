@@ -20,19 +20,21 @@ skills/dsh-plugin-builder/
 
 ## Install
 
-For DSH (global user skills):
+**In DeepSeek Harness (recommended)** — it is a DSH bundle; the plugin manager registers the skill for every session:
 
-```bash
-mkdir -p ~/.agents/skills && cp -R skills/dsh-plugin-builder ~/.agents/skills/
+```sh
+dsh plugin --profile <profile> add @chrischjh/dsh-plugin-builder
 ```
 
-Or with the agent-skills CLI (installs to your project's or a global skills root):
+(or **Plugins → Add plugin**, same spec; restart `dsh web` / the desktop app afterwards). Verify: the `dsh-plugin-builder` skill appears in the session skill catalog.
+
+**Outside DSH** (Claude Code, Codex, any agent-skills CLI):
 
 ```bash
 npx skills add chrischjh/dsh-plugin-builder -g -y
 ```
 
-Restart/refresh the agent session if the catalog does not update immediately, then check that `dsh-plugin-builder` appears in the skill catalog.
+or copy the folder: `mkdir -p ~/.agents/skills && cp -R skills/dsh-plugin-builder ~/.agents/skills/`.
 
 ## Why another plugin-dev skill?
 

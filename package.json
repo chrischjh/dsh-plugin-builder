@@ -1,0 +1,38 @@
+{
+  "name": "@chrischjh/dsh-plugin-builder",
+  "version": "0.1.0",
+  "description": "Practical DSH plugin-development skill: build-install-verify-publish workflow, production failure-mode playbook (shadowed packages, pnpm stores, npm 2FA, minimum release age, CRLF hashes) and a copyable minimal bundle. Installs as a DSH bundle and registers the dsh-plugin-builder skill.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrischjh/dsh-plugin-builder.git"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "agent-skills",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.2 <0.3.0"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
